@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - release
+  repository_dispatch:
+    types:
+      - build-web 
 
 jobs:
   build-project:
@@ -19,6 +22,7 @@ jobs:
         with:
           channel: stable
           flutter-version: '3.24.3'
+
       - run: flutter --version
 
       - name: Install GitHub CLI
@@ -29,6 +33,7 @@ jobs:
 
       - name: Build Flutter Web
         run: flutter build web --release --no-tree-shake-icons
+
 
       # - name: Upload Build Files
       #   uses: actions/upload-artifact@v4
