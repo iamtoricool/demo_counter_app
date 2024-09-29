@@ -15,10 +15,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Get App Icon
-        run:  wget ${{ github.event.client_payload.appIconUrl }} -O ./assets/app_icon/main.png
+        run:  wget ${{ github.event.client_payload.appIconUrl }} -O assets/app_icon/main.png
       
       - name: Check App Icon
-        run: ls -l ./assets/app_icon/
+        run: ls -l assets/app_icon/
       
 
       # - name: Set up Flutter
