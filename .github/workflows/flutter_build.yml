@@ -32,41 +32,41 @@ jobs:
         uses: actions/setup-java@v4
         with: 
           distribution: 'temurin'
-          java-version: '21'
+          java-version: '17'
       - run: |
           flutter --version
           java --version
           javac --version
     
           
-          # - name: Install GitHub CLI
-      #   run: sudo apt-get install gh -y
+      - name: Install GitHub CLI
+        run: sudo apt-get install gh -y
 
-      # - name: Install dependencies
-      #   run: flutter pub get
+      - name: Install dependencies
+        run: flutter pub get
       
-      # - name: Change App Icon
-      #   run: dart run icons_launcher:create --path=icon_config.yaml
+      - name: Change App Icon
+        run: dart run icons_launcher:create --path=icon_config.yaml
       
-      # - name: Change App Name
-      #   if: ${{ github.event.client_payload.appName != null }}
-      #   run: dart run rename_app:main all=${{ github.event.client_payload.appName }}
+      - name: Change App Name
+        if: ${{ github.event.client_payload.appName != null }}
+        run: dart run rename_app:main all=${{ github.event.client_payload.appName }}
 
-      # - name: Change Package Name
-      #   if: ${{ github.event.client_payload.packageName != null }}
-      #   run: dart run change_app_package_name:main ${{ github.event.client_payload.packageName }}
+      - name: Change Package Name
+        if: ${{ github.event.client_payload.packageName != null }}
+        run: dart run change_app_package_name:main ${{ github.event.client_payload.packageName }}
 
-      # # - name: Build Flutter Web
-      # #   run: flutter build web --release --no-tree-shake-icons
-      # - name: Build Android APK
-      #   run: |
-      #     flutter clean
-      #     flutter build apk
+      # - name: Build Flutter Web
+      #   run: flutter build web --release --no-tree-shake-icons
+      - name: Build Android APK
+        run: |
+          flutter clean
+          flutter build apk
 
 
-      # - name: Upload Build Files
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: build-files
-      #     path: |
-      #       ./build/app/outputs/flutter-apk/
+      - name: Upload Build Files
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-files
+          path: |
+            ./build/app/outputs/flutter-apk/
