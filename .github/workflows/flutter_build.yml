@@ -21,29 +21,32 @@ jobs:
         run: ls -l assets/app_icon/
       
 
-      # - name: Set up Flutter
-      #   uses: subosito/flutter-action@v2
-      #   with:
-      #     channel: stable
-      #     flutter-version: '3.24.3'
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: '3.24.3'
 
-      # - run: flutter --version
+      - run: flutter --version
 
-      # - name: Install GitHub CLI
-      #   run: sudo apt-get install gh -y
+      - name: Install GitHub CLI
+        run: sudo apt-get install gh -y
 
-      # - name: Install dependencies
-      #   run: flutter pub get
+      - name: Install dependencies
+        run: flutter pub get
+      
+      - name: Change App Icon
+        run: dart run icons_launcher:create --path=icon_config.yaml
 
-      # - name: Build Flutter Web
-      #   run: flutter build web --release --no-tree-shake-icons
+      - name: Build Flutter Web
+        run: flutter build web --release --no-tree-shake-icons
 
 
-      # - name: Upload Build Files
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: web
-      #     path: ./build/web
+      - name: Upload Build Files
+        uses: actions/upload-artifact@v4
+        with:
+          name: web
+          path: ./build/web
 
   # release-build-files:
   #   name: Publish Build Files
