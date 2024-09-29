@@ -1,4 +1,4 @@
-package com.example.demo_counter_app
+package com.alif.duducounter
 
 import io.flutter.embedding.android.FlutterActivity
 
