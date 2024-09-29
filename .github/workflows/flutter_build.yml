@@ -14,22 +14,29 @@ jobs:
       - name: Clone repository
         uses: actions/checkout@v4
 
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          channel: stable
-          flutter-version: '3.24.3'
+      - name: Get App Icon
+        run:  wget ${{ github.event.client_payload.appIconUrl }} -O ./assets/app_icon/
+      
+      - name: Check App Icon
+        run: ls -l ./assets/app_icon/
+      
 
-      - run: flutter --version
+      # - name: Set up Flutter
+      #   uses: subosito/flutter-action@v2
+      #   with:
+      #     channel: stable
+      #     flutter-version: '3.24.3'
 
-      - name: Install GitHub CLI
-        run: sudo apt-get install gh -y
+      # - run: flutter --version
 
-      - name: Install dependencies
-        run: flutter pub get
+      # - name: Install GitHub CLI
+      #   run: sudo apt-get install gh -y
 
-      - name: Build Flutter Web
-        run: flutter build web --release --no-tree-shake-icons
+      # - name: Install dependencies
+      #   run: flutter pub get
+
+      # - name: Build Flutter Web
+      #   run: flutter build web --release --no-tree-shake-icons
 
 
       # - name: Upload Build Files
